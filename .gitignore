@@ -1,0 +1,10 @@
+**/*.o
+objects
+
+list_run
+
+*.png
+*.svg
+*.txt
+*.html
+*.dot
