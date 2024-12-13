@@ -4,7 +4,7 @@
 #include "../../common/include/errors.h"
 #include "stack.h"
 
-const int CANARY = (stack_elem_t) 0XB00B5;
+const int CANARY = (stack_elem_t) 0XF00D;
 
 typedef enum
 {

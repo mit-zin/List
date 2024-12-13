@@ -7,15 +7,28 @@
 
 int main()
 {
-    List_t list = {};
-    CreateList(&list);
-    Insert(&list, 42, 0);
-    Insert(&list, 13, 1);
-    Insert(&list, 69, 1);
-    Insert(&list, 12345, 0);
+    #ifdef DEBUG
+        unsigned int res = 0;
+    #endif
 
-    Dump(&list);
-    DestroyList(&list);
+    List_t list = {};
+
+    WRITE_ER(CreateList(&list));
+
+    WRITE_ER(Insert(&list, 42, 0));
+    WRITE_ER(Insert(&list, 13, 1));
+    WRITE_ER(Insert(&list, 69, 1));
+    WRITE_ER(Insert(&list, 12345, 0));
+    WRITE_ER(Delete(&list, 2));
+    WRITE_ER(Insert(&list, 333, 3));
+    WRITE_ER(Delete(&list, 0));
+
+    WRITE_ER(DUMP_LIST(&list));
+    WRITE_ER(DestroyList(&list));
+
+    #ifdef DEBUG
+        if (res) PrintErr(res);
+    #endif
 
     printf("End of program.\n");
 

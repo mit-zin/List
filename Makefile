@@ -15,19 +15,21 @@ FLAGS=-D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-loop-o
 	return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,$\
 	vla-bound,vptr
 
+.PHONY: list common stack clean
+
 all: common stack list
 
 list:
-	make -f ./list/Makefile
+	make -C list
 
 common:
-	make -f ./common/Makefile
+	make -C common
 
 stack:
-	make -f ./stack/Makefile
+	make -C stack
 
 clean:
-	rm ./*/*.o
+	find . -name "*.o" -delete
 
 dot_svg:
 	dot dump.dot -Tsvg -o dump.svg

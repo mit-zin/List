@@ -18,6 +18,7 @@ typedef struct
     int head, tail;
     Stack_t free;
     size_t size, capacity;
+    FILE *html_file;
 } List_t;
 
 const int INITIAL_SIZE = 13;

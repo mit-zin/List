@@ -1,6 +1,9 @@
 #ifndef ERRORS_H
 #define ERRORS_H
 
+#define DEBUG
+#define ON_ASSERT
+
 typedef enum
 {
     SUCCESS       = 0,
@@ -12,6 +15,7 @@ typedef enum
     WRONG_ARG     = 32
 } errors_t;
 
+#ifdef ON_ASSERT
 #define MY_ASSERT(CHECKED_ARG, MESSAGE, ACTION) do                                         \
     {                                                                                      \
         if (!(CHECKED_ARG))                                                                \
@@ -21,13 +25,30 @@ typedef enum
             ACTION;                                                                        \
         }                                                                                  \
     } while(0)
+#else
+    #define MY_ASSERT(CHECKED_ARG, MESSAGE, ACTION)
+#endif
 
+#ifdef DEBUG
 #define CHECK_ER(FUNC) do   \
     {                       \
         errors_t res = FUNC;\
         if (res)            \
             return res;     \
     } while(0)
+#else
+    #define CHECK_ER(FUNC) FUNC
+#endif
+
+#ifdef DEBUG
+#define WRITE_ER(FUNC) do      \
+    {                          \
+        res |= FUNC;           \
+    }while(0)
+#else
+    #define WRITE_ER(FUNC) FUNC
+#endif
+
 
 void PrintErr(unsigned int res);
 

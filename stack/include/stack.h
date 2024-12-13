@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define DEBUG
+#include "../../common/include/errors.h"
 
 #ifdef DEBUG
     #define ON_DEBUG(...) __VA_ARGS__
